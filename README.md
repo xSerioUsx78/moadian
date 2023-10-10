@@ -108,6 +108,9 @@ sendInvoiceResData, err := moadian.SendInvoice(
     &token,
     &packetData,
 )
+if err != nil {
+    panic(err)
+}
 refNumber := sendInvoiceResData.Result[0].ReferenceNumber
 ```
 
@@ -116,6 +119,9 @@ And you can also inquiry the invoice by ReferenceNumber
 ```
 refNumbers := []string{refNumber}
 inquiryResData, err := moadian.InquiryByReferenceNumber(&token, &refNumbers)
+if err != nil {
+    panic(err)
+}
 fmt.Println(inquiryResData.Result.Data[0].Status)
 fmt.Println(inquiryResData.Result.Data[0].Data.Error)
 fmt.Println(inquiryResData.Result.Data[0].Data.Warning)
